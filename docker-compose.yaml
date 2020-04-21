@@ -1,0 +1,20 @@
+version: "3.6"
+
+services:
+  nginx-server:
+    container_name: nginx_server
+    build: './config'
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+    privileged: true
+    volumes:
+      - /usr/local/data/docker/nginx/www:/etc/nginx/html
+    networks:
+      - default
+      - externals
+
+networks:
+  externals:
+    external: true
